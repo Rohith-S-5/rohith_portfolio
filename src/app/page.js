@@ -655,55 +655,55 @@ export default function RohithPortfolio() {
                 </div>
               </Card>
 
-              <div className=”grid gap-3 md:grid-cols-2”>
+              <div className="grid gap-3 md:grid-cols-2">
                 {filteredProjects.map((p) => (
                   <motion.div
                     key={p.title}
-                    className={p.featured ? “md:col-span-2” : “”}
+                    className={p.featured ? "md:col-span-2" : ""}
                     variants={fadeUp}
-                    initial=”hidden”
-                    whileInView=”show”
+                    initial="hidden"
+                    whileInView="show"
                     viewport={{ once: true, amount: 0.2 }}
                     transition={softSpring}
                   >
-                    <Card className=”h-full”>
-                      <div className=”flex items-start gap-4”>
+                    <Card className="h-full">
+                      <div className="flex items-start gap-4">
                         <ProjectIcon name={p.icon} />
-                        <div className=”min-w-0 flex-1”>
-                          <div className=”text-sm font-semibold text-zinc-900 dark:text-zinc-50”>{p.title}</div>
-                          <p className=”mt-2 text-sm leading-6 text-zinc-700 dark:text-zinc-200”>{p.description}</p>
+                        <div className="min-w-0 flex-1">
+                          <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">{p.title}</div>
+                          <p className="mt-2 text-sm leading-6 text-zinc-700 dark:text-zinc-200">{p.description}</p>
 
-                          <div className=”mt-4 flex flex-wrap gap-2”>
+                          <div className="mt-4 flex flex-wrap gap-2">
                             {p.tags.map((t) => (
                               <Badge key={t}>{t}</Badge>
                             ))}
                           </div>
 
                           {p.images && p.images.length > 0 && (
-                            <div className=”mt-4 grid grid-cols-3 gap-2”>
+                            <div className="mt-4 grid grid-cols-3 gap-2">
                               {p.images.map((img, i) => (
                                 <a
                                   key={i}
                                   href={img}
-                                  target=”_blank”
-                                  rel=”noreferrer”
-                                  className=”group overflow-hidden rounded-xl border border-white/40 backdrop-blur dark:border-white/10”
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="group overflow-hidden rounded-xl border border-white/40 backdrop-blur dark:border-white/10"
                                 >
                                   <img
                                     src={img}
                                     alt={`${p.title} screenshot ${i + 1}`}
-                                    className=”h-28 w-full object-cover transition duration-300 group-hover:scale-105”
+                                    className="h-28 w-full object-cover transition duration-300 group-hover:scale-105"
                                   />
                                 </a>
                               ))}
                             </div>
                           )}
 
-                          {p.link && p.link !== “#” && (
-                            <div className=”mt-5 flex flex-wrap gap-2”>
-                              <Button as=”a” href={p.link} variant=”secondary”>
-                                <LayoutDashboard className=”h-4 w-4” />
-                                {p.linkLabel || “View”}
+                          {p.link && p.link !== "#" && (
+                            <div className="mt-5 flex flex-wrap gap-2">
+                              <Button as="a" href={p.link} variant="secondary">
+                                <LayoutDashboard className="h-4 w-4" />
+                                {p.linkLabel || "View"}
                               </Button>
                             </div>
                           )}
