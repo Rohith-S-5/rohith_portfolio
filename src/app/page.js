@@ -25,6 +25,7 @@ import {
   LineChart,
   Sun,
   Moon,
+  Activity,
 } from "lucide-react";
 
 /**
@@ -155,6 +156,8 @@ const ProjectIcon = ({ name }) => {
       ? LineChart
       : name === "excel"
       ? PieChart
+      : name === "airflow"
+      ? Activity
       : LayoutDashboard;
 
   return (
@@ -181,34 +184,38 @@ export default function RohithPortfolio() {
       },
 
       summary:
-        "Data Analyst with experience in operations, supply chain, and warehouse analytics, specializing in automation, dashboarding, and data-driven decision support. Proficient in Python, SQL, ETL, PySpark, Power BI, Looker Studio, Tableau, and Google Apps Script. Skilled in building scalable reporting solutions, optimizing SLAs, reducing manual effort, and improving business performance.",
+        "Data Analyst with experience in operations, supply chain, and warehouse analytics, specializing in automation, end-to-end data pipelines, and data-driven decision support. Proficient in Python, SQL, Apache Airflow, PostgreSQL, Flask, ETL, PySpark, Power BI, Looker Studio, Tableau, and Google Apps Script. Skilled in building production-grade ops platforms — from automated data ingestion to real-time dashboards — that reduce manual effort, surface SLA risks, and drive operational efficiency at scale.",
 
       skills: {
         technical: [
           "Python (Pandas, NumPy)",
           "SQL",
-          "ETL",
+          "Apache Airflow",
+          "PostgreSQL",
+          "ETL / Data Pipelines",
+          "Flask",
+          "Docker",
           "PySpark",
           "Power BI",
           "Looker Studio",
           "Tableau",
           "Google Apps Script",
           "Advanced Excel / Google Sheets",
-          "Automation & Pipelines",
         ],
         domain: [
+          "D2C Operations Analytics",
           "Operational KPI Analytics",
           "Warehouse Ops (Inward/Outward/Returns)",
+          "SLA/TAT Monitoring & Alerting",
           "Inventory Planning",
-          "SLA/TAT Monitoring",
-          "Logistics & Returns",
+          "Logistics & Last-Mile Tracking",
           "Capacity Planning",
           "Root Cause Analysis",
           "Stakeholder Management",
         ],
       },
 
-      platforms: ["Metabase", "Power BI", "Looker Studio", "Tableau", "Increff", "Unicommerce"],
+      platforms: ["Apache Airflow", "PostgreSQL", "Docker", "Flask", "Metabase", "Power BI", "Looker Studio", "Tableau", "Increff", "Unicommerce"],
 
       experience: [
         {
@@ -217,9 +224,12 @@ export default function RohithPortfolio() {
           role: "Data Analyst",
           period: "May 2025 – Present",
           bullets: [
+            "Architected and deployed an end-to-end D2C order pipeline using Apache Airflow (8× daily): automated Gmail IMAP ingestion from Increff OMS, schema validation, deduplication, multi-SKU PostgreSQL upsert (80+ columns), atomic analytics table rebuild (OTF flags, error classification, team routing, TAT computation), SLA breach alerting via SMTP, and last-mile courier tracking sync via Shiprocket/Metabase API.",
+            "Built the D2C Control Tower — a Flask + Gunicorn web app with Google OAuth SSO, real-time Operations Dashboard (17,500+ active orders across 4 warehouses), TAT Analytics (P50/P90/P95/P99 percentile breakdown with bottleneck detection), SLA Watch (breach risk matrix), and team-based workflows (comment, escalate, transfer, follow-up) with RBAC across 5 role levels.",
+            "Implemented zero-downtime analytics rebuild via staging-table atomic swap and pre-aggregated TAT materialized view (P50–P99 percentiles), achieving sub-200ms dashboard query performance at scale.",
             "Built and maintained operational analytics for Inward, Inventory, Outward, and Returns using Increff, Unicommerce, and internal systems.",
             "Delivered executive dashboards in Power BI and Looker Studio for Cycle Count, Putaway TAT, O2D/Pack TAT, logistics SLAs, returns ageing, and productivity.",
-            "Automated reporting workflows using Python, SQL, and Google Apps Script to reduce manual reporting effort and improve refresh reliability.",
+            "Automated reporting workflows using Python, SQL, and Google Apps Script, reducing manual reporting effort by ~60%.",
             "Built inventory planning trackers integrating Sales, DRR, DOH, velocity metrics, replenishment signals, and UHI identification.",
             "Designed an automated picklist generator with FIFO shelf_code × SKU allocation and a bulk SKU cancellation file generator.",
           ],
@@ -264,6 +274,17 @@ export default function RohithPortfolio() {
       ],
 
       projects: [
+        {
+          icon: "airflow",
+          title: "D2C Operations Control Tower | Mensa Brands",
+          tags: ["Apache Airflow", "Python", "PostgreSQL", "Flask", "Docker", "D2C Analytics", "Operations"],
+          description:
+            "Production-grade D2C ops platform built at Mensa Brands. Engineered an 8-task Airflow pipeline (d2c_pipeline) that ingests Increff OMS CSVs via Gmail IMAP every 3 hours — schema validation, deduplication, multi-SKU PostgreSQL upsert (80+ columns), atomic analytics rebuild with OTF flags, error classification (12 categories → team routing), TAT computation, SLA breach alerting via SMTP, and last-mile courier tracking sync via Shiprocket/Metabase. Paired with a Flask Control Tower monitoring 17,500+ active orders across 4 warehouses: real-time Operations Dashboard, TAT Analytics (P50–P99 percentile breakdown with bottleneck detection), SLA Watch (breach risk matrix), and team-based action workflows with RBAC.",
+          images: ["/dashboard_1.jpg", "/dashboard_2.jpg", "/airflow_1.jpg"],
+          link: "#",
+          linkLabel: "View Dashboard",
+          featured: true,
+        },
         {
           icon: "tableau",
           title: "Boston Condo Dataset | Tableau",
@@ -501,15 +522,12 @@ export default function RohithPortfolio() {
                 ) : null}
               </div>
 
-              <div className="mt-4 rounded-2xl border border-white/40 bg-white/50 p-4 text-xs text-zinc-600 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-zinc-300">
-                If GitHub is optional, you can keep it empty (data.links.github).
-              </div>
             </Card>
 
             <Card>
               <div className="text-sm font-semibold">Primary Stack</div>
               <div className="mt-3 flex flex-wrap gap-2">
-                {["Python", "SQL", "ETL", "PySpark", "Power BI", "Looker Studio", "Apps Script"].map((s) => (
+                {["Python", "SQL", "Apache Airflow", "PostgreSQL", "Flask", "PySpark", "Power BI", "Looker Studio"].map((s) => (
                   <Badge key={s}>{s}</Badge>
                 ))}
               </div>
@@ -637,41 +655,58 @@ export default function RohithPortfolio() {
                 </div>
               </Card>
 
-              <div className="grid gap-3 md:grid-cols-2">
+              <div className=”grid gap-3 md:grid-cols-2”>
                 {filteredProjects.map((p) => (
                   <motion.div
                     key={p.title}
+                    className={p.featured ? “md:col-span-2” : “”}
                     variants={fadeUp}
-                    initial="hidden"
-                    whileInView="show"
+                    initial=”hidden”
+                    whileInView=”show”
                     viewport={{ once: true, amount: 0.2 }}
                     transition={softSpring}
                   >
-                    <Card className="h-full">
-                      <div className="flex items-start gap-4">
+                    <Card className=”h-full”>
+                      <div className=”flex items-start gap-4”>
                         <ProjectIcon name={p.icon} />
-                        <div className="min-w-0 flex-1">
-                          <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">{p.title}</div>
-                          <p className="mt-2 text-sm leading-6 text-zinc-700 dark:text-zinc-200">{p.description}</p>
+                        <div className=”min-w-0 flex-1”>
+                          <div className=”text-sm font-semibold text-zinc-900 dark:text-zinc-50”>{p.title}</div>
+                          <p className=”mt-2 text-sm leading-6 text-zinc-700 dark:text-zinc-200”>{p.description}</p>
 
-                          <div className="mt-4 flex flex-wrap gap-2">
+                          <div className=”mt-4 flex flex-wrap gap-2”>
                             {p.tags.map((t) => (
                               <Badge key={t}>{t}</Badge>
                             ))}
                           </div>
 
-                          <div className="mt-5 flex flex-wrap gap-2">
-                            {p.link && p.link !== "#" ? (
-                              <Button as="a" href={p.link} variant="secondary">
-                                <LayoutDashboard className="h-4 w-4" />
-                                {p.linkLabel || "View"}
+                          {p.images && p.images.length > 0 && (
+                            <div className=”mt-4 grid grid-cols-3 gap-2”>
+                              {p.images.map((img, i) => (
+                                <a
+                                  key={i}
+                                  href={img}
+                                  target=”_blank”
+                                  rel=”noreferrer”
+                                  className=”group overflow-hidden rounded-xl border border-white/40 backdrop-blur dark:border-white/10”
+                                >
+                                  <img
+                                    src={img}
+                                    alt={`${p.title} screenshot ${i + 1}`}
+                                    className=”h-28 w-full object-cover transition duration-300 group-hover:scale-105”
+                                  />
+                                </a>
+                              ))}
+                            </div>
+                          )}
+
+                          {p.link && p.link !== “#” && (
+                            <div className=”mt-5 flex flex-wrap gap-2”>
+                              <Button as=”a” href={p.link} variant=”secondary”>
+                                <LayoutDashboard className=”h-4 w-4” />
+                                {p.linkLabel || “View”}
                               </Button>
-                            ) : (
-                              <div className="text-xs text-zinc-600 dark:text-zinc-300">
-                                Add a public link to enable “View”.
-                              </div>
-                            )}
-                          </div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </Card>
