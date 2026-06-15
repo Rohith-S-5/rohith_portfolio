@@ -176,7 +176,7 @@ export default function RohithPortfolio() {
       phone: "+91 7338913707",
       email: "rohithsakkaravarthi@gmail.com",
       resumeUrl:
-        "https://docs.google.com/document/d/10HBwwP-CioiNlUGnW-zx9tO-LRXQYFC8/edit?usp=sharing&ouid=103154474723005885806&rtpof=true&sd=true",
+        "https://drive.google.com/file/d/1-5hjrNeuuIkmMHZrNtDMXPPg4cjRvWut/view?usp=sharing",
       profileImageUrl: "/rohith.jpg",
       links: {
         linkedin: "https://www.linkedin.com/in/srohith07",
