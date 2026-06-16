@@ -280,7 +280,6 @@ export default function RohithPortfolio() {
           tags: ["Apache Airflow", "Python", "PostgreSQL", "Flask", "Docker", "D2C Analytics", "Operations"],
           description:
             "Production-grade D2C ops platform built at Mensa Brands. Engineered an 8-task Airflow pipeline (d2c_pipeline) that ingests Increff OMS CSVs via Gmail IMAP every 3 hours — schema validation, deduplication, multi-SKU PostgreSQL upsert (80+ columns), atomic analytics rebuild with OTF flags, error classification (12 categories → team routing), TAT computation, SLA breach alerting via SMTP, and last-mile courier tracking sync via Shiprocket/Metabase. Paired with a Flask Control Tower monitoring 17,500+ active orders across 4 warehouses: real-time Operations Dashboard, TAT Analytics (P50–P99 percentile breakdown with bottleneck detection), SLA Watch (breach risk matrix), and team-based action workflows with RBAC.",
-          images: ["/dashboard_1.jpg", "/dashboard_2.jpg", "/airflow_1.jpg"],
           link: "#",
           linkLabel: "View Dashboard",
           featured: true,
