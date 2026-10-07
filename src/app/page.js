@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
-import Head from "next/head";
 import { motion } from "framer-motion";
 import {
   Mail,
@@ -13,19 +12,20 @@ import {
   Wrench,
   Warehouse,
   TrendingUp,
-  FileSpreadsheet,
   Search,
   ExternalLink,
   Sparkles,
   GraduationCap,
   Award,
   LayoutDashboard,
-  Map,
-  PieChart,
-  LineChart,
   Sun,
   Moon,
   Activity,
+  Cloud,
+  Workflow,
+  ShieldCheck,
+  GitBranch,
+  Server,
 } from "lucide-react";
 
 /**
@@ -150,12 +150,12 @@ const TimelineItem = ({ company, location, role, period, bullets }) => (
 
 const ProjectIcon = ({ name }) => {
   const Icon =
-    name === "tableau"
-      ? Map
-      : name === "python"
-      ? LineChart
-      : name === "excel"
-      ? PieChart
+    name === "pipeline"
+      ? Workflow
+      : name === "aws"
+      ? Cloud
+      : name === "warehouse"
+      ? Server
       : name === "airflow"
       ? Activity
       : LayoutDashboard;
@@ -171,159 +171,177 @@ export default function RohithPortfolio() {
   const data = useMemo(
     () => ({
       name: "Rohith S",
-      title: "Data Analyst | Ops, Supply Chain & Warehouse Analytics",
-      location: "Chennai, India",
-      phone: "+91 7338913707",
+      title: "Data Engineer | Batch ETL, Cloud Pipelines & Data Quality",
+      location: "Bengaluru, India",
+      phone: "+91 9989213707",
       email: "rohithsakkaravarthi@gmail.com",
       resumeUrl:
         "https://drive.google.com/file/d/1-5hjrNeuuIkmMHZrNtDMXPPg4cjRvWut/view?usp=sharing",
       profileImageUrl: "/rohith.jpg",
       links: {
         linkedin: "https://www.linkedin.com/in/srohith07",
-        github: "#",
+        github: "https://github.com/Rohith-S-5",
       },
 
       summary:
-        "Data Analyst with experience in operations, supply chain, and warehouse analytics, specializing in automation, end-to-end data pipelines, and data-driven decision support. Proficient in Python, SQL, Apache Airflow, PostgreSQL, Flask, ETL, PySpark, Power BI, Looker Studio, Tableau, and Google Apps Script. Skilled in building production-grade ops platforms — from automated data ingestion to real-time dashboards — that reduce manual effort, surface SLA risks, and drive operational efficiency at scale.",
+        "Data professional with 4+ years building batch ETL pipelines, cloud data workflows, and data-quality layers for retail, eCommerce, marketplace, and supply-chain businesses. I design config-driven pipelines in Python and SQL (PostgreSQL, MySQL, DuckDB), orchestrate them with Apache Airflow and AWS (Lambda, S3, Redshift, EventBridge, CloudWatch), and land clean, validated data in warehouses, Google Sheets, and BI tools. My pipelines have replaced 45-minute manual extractions, cut manual reporting effort by 60%, and feed daily restock plans for 90+ outlets.",
 
-      skills: {
-        technical: [
-          "Python (Pandas, NumPy)",
-          "SQL",
-          "Apache Airflow",
-          "PostgreSQL",
-          "ETL / Data Pipelines",
-          "Flask",
-          "Docker",
-          "PySpark",
-          "Power BI",
-          "Looker Studio",
-          "Tableau",
-          "Google Apps Script",
-          "Advanced Excel / Google Sheets",
-        ],
-        domain: [
-          "D2C Operations Analytics",
-          "Operational KPI Analytics",
-          "Warehouse Ops (Inward/Outward/Returns)",
-          "SLA/TAT Monitoring & Alerting",
-          "Inventory Planning",
-          "Logistics & Last-Mile Tracking",
-          "Capacity Planning",
-          "Root Cause Analysis",
-          "Stakeholder Management",
-        ],
-      },
+      skills: [
+        {
+          group: "Pipelines & Orchestration",
+          items: ["Batch ETL Pipelines", "Apache Airflow (MWAA)", "Config-driven Pipelines", "AWS EventBridge", "Retry & Idempotent Upserts", "Docker"],
+        },
+        {
+          group: "Cloud & Infrastructure",
+          items: ["AWS Lambda", "AWS S3", "AWS Redshift", "AWS CloudWatch", "GCP Service Accounts", "Flask"],
+        },
+        {
+          group: "Languages & Databases",
+          items: ["Python (Pandas, NumPy, Psycopg2)", "SQL", "PostgreSQL", "MySQL", "DuckDB", "Bash", "Google Apps Script"],
+        },
+        {
+          group: "Data Modeling & Quality",
+          items: ["Schema Design", "Views & Materialized Views", "Data Validation", "Deduplication", "Reconciliation", "Data Lineage", "Data Governance"],
+        },
+        {
+          group: "Integrations & APIs",
+          items: ["Google Sheets API", "Metabase API", "Unicommerce", "Increff OMS", "Shopify", "Shiprocket"],
+        },
+        {
+          group: "BI & Consumption",
+          items: ["Power BI (DAX, Data Modeling)", "Looker Studio", "Tableau", "Advanced Excel"],
+        },
+      ],
 
-      platforms: ["Apache Airflow", "PostgreSQL", "Docker", "Flask", "Metabase", "Power BI", "Looker Studio", "Tableau", "Increff", "Unicommerce"],
+      platforms: [
+        "Apache Airflow",
+        "AWS Lambda",
+        "AWS S3",
+        "AWS Redshift",
+        "AWS EventBridge",
+        "AWS CloudWatch",
+        "GCP",
+        "PostgreSQL",
+        "DuckDB",
+        "Docker",
+        "Flask",
+        "Metabase",
+        "Unicommerce",
+        "Increff OMS",
+        "Shopify",
+        "Shiprocket",
+        "Power BI",
+        "Looker Studio",
+      ],
 
       experience: [
         {
-          company: "Mensa Brand Technologies Limited",
+          company: "Indian Snack House",
           location: "Bengaluru, India",
-          role: "Data Analyst",
-          period: "May 2025 – Present",
+          role: "Senior Data Analyst",
+          period: "Sep 2026 – Present",
           bullets: [
-            "Architected and deployed an end-to-end D2C order pipeline using Apache Airflow (8× daily): automated Gmail IMAP ingestion from Increff OMS, schema validation, deduplication, multi-SKU PostgreSQL upsert (80+ columns), atomic analytics table rebuild (OTF flags, error classification, team routing, TAT computation), SLA breach alerting via SMTP, and last-mile courier tracking sync via Shiprocket/Metabase API.",
-            "Built the D2C Control Tower — a Flask + Gunicorn web app with Google OAuth SSO, real-time Operations Dashboard (17,500+ active orders across 4 warehouses), TAT Analytics (P50/P90/P95/P99 percentile breakdown with bottleneck detection), SLA Watch (breach risk matrix), and team-based workflows (comment, escalate, transfer, follow-up) with RBAC across 5 role levels.",
-            "Implemented zero-downtime analytics rebuild via staging-table atomic swap and pre-aggregated TAT materialized view (P50–P99 percentiles), achieving sub-200ms dashboard query performance at scale.",
-            "Built and maintained operational analytics for Inward, Inventory, Outward, and Returns using Increff, Unicommerce, and internal systems.",
-            "Delivered executive dashboards in Power BI and Looker Studio for Cycle Count, Putaway TAT, O2D/Pack TAT, logistics SLAs, returns ageing, and productivity.",
-            "Automated reporting workflows using Python, SQL, and Google Apps Script, reducing manual reporting effort by ~60%.",
-            "Built inventory planning trackers integrating Sales, DRR, DOH, velocity metrics, replenishment signals, and UHI identification.",
-            "Designed an automated picklist generator with FIFO shelf_code × SKU allocation and a bulk SKU cancellation file generator.",
+            "Built 11 modular, config-driven batch ETL pipelines that turn ~450K sales records, warehouse inventory, and operational logs into daily restock, allocation, and vendor-order plans for 90+ outlets across 4 regions and 3 brands.",
+            "Integrated the pipelines with Google Sheets through the Sheets API using a GCP service account, reusing one client per run to cut API overhead.",
+            "Added data-quality checks (input freshness, schema, duplicates, a >50% stock-swing check, dry-run mode), a run-metadata lineage tab, and caching so already-closed months aren't re-parsed on every run.",
+            "Built a read-only Apps Script dashboard with cached batch reads, and an LLM insights agent that answers questions by running SQL on DuckDB.",
           ],
         },
         {
-          company: "MEESHO",
+          company: "Mensa Brands Technologies",
+          location: "Bengaluru, India",
+          role: "Data Analyst",
+          period: "May 2025 – Aug 2026",
+          bullets: [
+            "Automated a manual 45-minute daily Unicommerce extraction into a fault-tolerant pipeline consolidating data from 4 brands and 28 warehouses pan-India.",
+            "Designed PostgreSQL schemas, views, and materialized views for an 80+ column real-time order dataset spanning 7 warehouses, used for reconciliation and downstream reporting.",
+            "Built production-grade validation and observability with composite-key upsert deduplication, automated retry handling, and CloudWatch alerts.",
+            "Orchestrated an 8× daily Apache Airflow D2C order pipeline: ingestion, schema validation, deduplication, multi-SKU PostgreSQL upsert, atomic analytics rebuild, and SLA breach alerting.",
+            "Built a 12-tier classification engine on order remarks that auto-routes operational issues to the right team, cutting manual triage by ~50%.",
+            "Delivered Power BI / Looker Studio dashboards on inventory health (Sales Velocity, DRR, DOH) across 5+ brands, cutting reporting turnaround by 40% and manual reporting effort by 60%.",
+            "Supported pricing and inventory decisions with demand-forecasting models (regression, time-series) for FIFO picklist generation and SKU mapping, reducing manual planning time by 70% and driving ~5% revenue uplift.",
+          ],
+        },
+        {
+          company: "Meesho",
           location: "Bengaluru, India",
           role: "Operations Analyst",
-          period: "Sep 2024 – April 2025",
+          period: "Sep 2024 – Apr 2025",
           bullets: [
-            "Created MIS reports and live dashboards tracking supplier count, PO/shipment status across three warehouses, and seller performance.",
-            "Developed seller risk profiling insights (opt-out/paused/dormant) to support engagement strategies.",
-            "Automated PO×SKU inventory flow tracking using Google Apps Script, improving traceability and reducing manual errors.",
-            "Analyzed KAM performance metrics (Fill Rate, Promise Adherence %, SLA breaches, OTIF) to support performance improvements.",
-            "Collaborated with logistics and warehouse teams to reduce packing, pickup, and delivery TAT.",
+            "Automated inventory-flow data processes using Google Apps Script, improving PO × SKU-level tracking accuracy by ~30% and reducing manual data-entry errors.",
+            "Delivered MIS dashboards on live seller-level data, enabling same-day operational decisions across cross-functional teams.",
+            "Tracked KAM performance metrics (Fill Rate, Promise Adherence %, SLA Breaches, OTIF) and drove interventions that improved seller on-time fulfillment.",
+            "Led out-of-stock and aged-inventory analysis across high-volume sellers, improving inventory turnover by ~20%.",
           ],
         },
         {
           company: "ABS Motors",
           location: "Chennai, India",
-          role: "Management Trainee",
+          role: "Operations Associate",
           period: "Jun 2022 – Aug 2024",
           bullets: [
-            "Tracked end-product and child-part inventory to support forecasting and reordering decisions.",
-            "Owned vendor management processes and supplier master data for smoother supply chain operations.",
-            "Created and maintained production & QC documentation (PDC), improving consistency and adherence.",
-            "Collaborated with sourcing and R&D to enhance electrical parts quality and process efficiency.",
+            "Built inventory-tracking and demand-forecasting models for finished goods and child parts, reducing stockouts by ~25%.",
+            "Designed a structured supplier master database, cutting new vendor qualification time from 3 weeks to under 1 week.",
+            "Maintained production and inventory tracking data in Excel for timely management reporting.",
+            "Authored Pre-Delivery Check (PDC) records and quality-process documentation, standardizing QC across production lines.",
           ],
         },
       ],
 
-      accomplishments: [
-        "Architected and scaled warehouse analytics frameworks across Inward, Inventory, Outward, and Returns, integrating data from Increff, Unicommerce, and internal WMS/OMS systems, enabling unified operational visibility and decision-making.",
-        "Designed and deployed executive dashboards in Power BI & Looker Studio tracking critical KPIs including Cycle Count Accuracy, Putaway TAT, Order-to-Dispatch (O2D) / Pack TAT, Logistics SLA adherence, Returns ageing & resolution efficiency, and workforce productivity metrics.",
-        "Automated end-to-end reporting pipelines using Python, SQL, and Google Apps Script, eliminating repetitive manual processes: reduced manual reporting effort by ~60%, improved data reliability & refresh accuracy, and enabled near real-time operational tracking.",
-        "Developed inventory planning & control trackers combining Sales velocity & DRR, DOH & stock cover analytics, replenishment triggers, velocity segmentation, and UHI (Unhealthy Inventory) identification.",
-        "Engineered an end-to-end demand planning & forecasting workflow: automated ingestion & cleansing, implemented Parent → Child SKU conversion logic, integrated item master validation checks, and reconciled live inventory vs system stock.",
-        "Impact: reduced manual planning cycles by ~70% and improved forecast & replenishment accuracy.",
-        "Built an automated Picklist Report generator: SKU-level shelf_code & quantity allocation with FIFO-based inventory logic, minimizing picking errors & allocation mismatches.",
-        "Automated bulk SKU-level cancellation file generation, improving operational turnaround time, cancellation accuracy, and exception handling efficiency.",
-        "Enhanced fill-rate & stock availability through analytics-driven replenishment optimization: contributed to ~5% revenue uplift and reduced stock-out driven sales losses.",
+      impact: [
+        { metric: "11", label: "Config-driven batch ETL pipelines in production" },
+        { metric: "~450K", label: "Sales records processed into daily plans for 90+ outlets" },
+        { metric: "28", label: "Warehouses consolidated into one automated pipeline" },
+        { metric: "60%", label: "Manual reporting effort eliminated" },
+        { metric: "40%", label: "Faster reporting turnaround" },
+        { metric: "~5%", label: "Revenue uplift from data-driven replenishment" },
       ],
 
       projects: [
         {
-          icon: "airflow",
-          title: "D2C Operations Control Tower | Mensa Brands",
-          tags: ["Apache Airflow", "Python", "PostgreSQL", "Flask", "Docker", "D2C Analytics", "Operations"],
+          icon: "pipeline",
+          title: "Multi-Outlet Replenishment Pipelines | Indian Snack House",
+          tags: ["Python", "DuckDB", "Batch ETL", "GCP", "Google Sheets API", "Data Quality", "LLM Agent"],
           description:
-            "Production-grade D2C ops platform built at Mensa Brands. Engineered an 8-task Airflow pipeline (d2c_pipeline) that ingests Increff OMS CSVs via Gmail IMAP every 3 hours — schema validation, deduplication, multi-SKU PostgreSQL upsert (80+ columns), atomic analytics rebuild with OTF flags, error classification (12 categories → team routing), TAT computation, SLA breach alerting via SMTP, and last-mile courier tracking sync via Shiprocket/Metabase. Paired with a Flask Control Tower monitoring 17,500+ active orders across 4 warehouses: real-time Operations Dashboard, TAT Analytics (P50–P99 percentile breakdown with bottleneck detection), SLA Watch (breach risk matrix), and team-based action workflows with RBAC.",
+            "11 modular, config-driven batch ETL pipelines that process ~450K sales records, warehouse inventory, and operational logs into daily restock, allocation, and vendor-order plans for 90+ outlets across 4 regions and 3 brands. Includes freshness, schema, duplicate, and stock-swing quality checks, a dry-run mode, a run-metadata lineage tab, caching for closed months, and an LLM insights agent that answers questions with SQL on DuckDB.",
           link: "#",
-          linkLabel: "View Dashboard",
           featured: true,
         },
         {
-          icon: "tableau",
-          title: "Boston Condo Dataset | Tableau",
-          tags: ["Tableau", "Geospatial", "Dashboard"],
+          icon: "airflow",
+          title: "D2C Order Pipeline & Control Tower | Mensa Brands",
+          tags: ["Apache Airflow", "Python", "PostgreSQL", "Flask", "Docker", "Materialized Views"],
           description:
-            "Analyzed house pricing data using Tableau. Mapped pricing variations geospatially, identified key drivers via scatter plots, evaluated demographic impact, and built responsive dashboards with parameters and actions.",
+            "An 8-task Airflow DAG running 8× daily: ingests Increff OMS exports, validates schema, deduplicates, upserts multi-SKU orders into an 80+ column PostgreSQL model, rebuilds analytics tables atomically, classifies errors into 12 categories for team routing, and sends SLA breach alerts. A Flask control tower on top serves TAT percentile analytics (P50–P99) from pre-aggregated materialized views.",
           link: "#",
-          linkLabel: "View Dashboard",
+          featured: true,
         },
         {
-          icon: "python",
-          title: "EDA & Data Pre-Processing on App Store Data | Python",
-          tags: ["Python", "Pandas", "EDA"],
+          icon: "aws",
+          title: "Unicommerce to AWS Cloud Data Pipeline",
+          tags: ["Python 3.12", "AWS Lambda", "S3", "EventBridge", "CloudWatch"],
           description:
-            "Performed EDA and preprocessing: missing-value treatment, outlier detection, statistical summaries, and visualizations using Matplotlib/Seaborn to derive insights.",
+            "Serverless pipeline automating daily order-data extraction from 4 Unicommerce tenants across 28 warehouses, with composite-key deduplication, versioned storage in S3, structured logging, retry logic, and automated CloudWatch alerts.",
           link: "#",
-          linkLabel: "View Notebook",
         },
         {
-          icon: "excel",
-          title: "Terros Real Estate Analysis | Excel",
-          tags: ["Excel", "Regression", "Model Metrics"],
+          icon: "warehouse",
+          title: "End-to-End Pipeline: Kaggle → Redshift → Looker Studio",
+          tags: ["Python", "AWS S3", "Redshift", "MWAA (Airflow)", "Looker Studio"],
           description:
-            "Built a house price analysis using Excel: histograms, summary statistics, and regression modeling. Evaluated performance using R-Square, Adjusted R-Square, and P-Values.",
+            "Ingests raw datasets, stages them in S3, transforms and loads them into Redshift, and runs scheduled Airflow DAGs on MWAA that feed Looker Studio dashboards.",
           link: "#",
-          linkLabel: "View Summary",
         },
       ],
 
       education: [
-        { title: "Data Analytics", org: "Great Learning Institute", period: "Aug 2023 – Jan 2024" },
-        { title: "B.Tech, Mechanical Engineering (CGPA: 8.1)", org: "SSN College of Engineering, Chennai", period: "2018 – 2022" },
-        { title: "Class XII (94.6%)", org: "Velammal Matric. Hr Sec School, Ponneri", period: "2016 – 2018" },
-        { title: "Class X (93%)", org: "DCL High School, Telangana", period: "2015 – 2016" },
+        { title: "B.Tech, Mechanical Engineering (CGPA: 8.1/10)", org: "SSN College of Engineering, Chennai", period: "2018 – 2022" },
+        { title: "Class XII (94.6%)", org: "Velammal Matriculation Hr. Sec. School, Ponneri", period: "2016 – 2018" },
       ],
 
       certifications: [
-        "Data Analytics (Python, SQL, Tableau, Excel) – Great Learning Institute",
+        "Data Analytics (Python, MySQL, Tableau, Excel) – Great Learning Institute, Chennai (2023–2024)",
         "Python 3 Bootcamp – Udemy",
-        "Microsoft Power BI – Udemy",
       ],
     }),
     []
@@ -367,7 +385,7 @@ export default function RohithPortfolio() {
     { id: "skills", label: "Skills" },
     { id: "platforms", label: "Platforms" },
     { id: "experience", label: "Experience" },
-    { id: "accomplishments", label: "Career Accomplishments" },
+    { id: "impact", label: "Impact" },
     { id: "projects", label: "Projects" },
     { id: "education", label: "Education" },
     { id: "certs", label: "Certifications" },
@@ -375,16 +393,6 @@ export default function RohithPortfolio() {
 
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900 dark:bg-black dark:text-zinc-50">
-      <Head>
-        <title>Rohith S | Data Analyst Portfolio</title>
-        <meta
-          name="description"
-          content="Portfolio of Rohith S — Data Analyst specializing in automation, BI dashboards, warehouse & supply chain analytics."
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       {/* Premium background */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <div className="absolute -left-24 -top-24 h-80 w-80 rounded-full bg-gradient-to-br from-zinc-200 to-zinc-50 blur-3xl dark:from-zinc-900 dark:to-black" />
@@ -442,8 +450,8 @@ export default function RohithPortfolio() {
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
             <Card className="p-7">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/70 px-3 py-1 text-xs font-semibold text-zinc-700 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-zinc-200">
-                <Warehouse className="h-3.5 w-3.5" />
-                Ops Analytics • Automation • BI
+                <Workflow className="h-3.5 w-3.5" />
+                Data Pipelines • ETL • Data Quality
               </div>
 
               {/* Intro + Photo (structured) */}
@@ -451,7 +459,7 @@ export default function RohithPortfolio() {
                 {/* Left content */}
                 <div className="min-w-0 flex-1">
                   <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">
-                    Modern analytics &amp; automation for high-volume operations.
+                    Reliable data pipelines, from raw sources to decision-ready data.
                   </h1>
 
                   <p className="mt-3 max-w-2xl text-sm leading-6 text-zinc-700 dark:text-zinc-200">
@@ -526,7 +534,7 @@ export default function RohithPortfolio() {
             <Card>
               <div className="text-sm font-semibold">Primary Stack</div>
               <div className="mt-3 flex flex-wrap gap-2">
-                {["Python", "SQL", "Apache Airflow", "PostgreSQL", "Flask", "PySpark", "Power BI", "Looker Studio"].map((s) => (
+                {["Python", "SQL", "Apache Airflow", "AWS", "PostgreSQL", "DuckDB", "Redshift", "Docker"].map((s) => (
                   <Badge key={s}>{s}</Badge>
                 ))}
               </div>
@@ -536,20 +544,21 @@ export default function RohithPortfolio() {
 
         {/* Sections */}
         <div className="mt-10 grid gap-8">
-          <Section id="about" title="About" icon={Database} subtitle="How I deliver measurable outcomes">
+          <Section id="about" title="About" icon={Database} subtitle="How I build data systems">
             <Card>
               <div className="grid gap-4 md:grid-cols-3">
                 <div className="md:col-span-2">
                   <p className="text-sm leading-6 text-zinc-700 dark:text-zinc-200">
-                    I build analytics and automation systems that make operations measurable and scalable.
-                    My work typically covers KPI definitions, data modeling, automated refresh pipelines, and stakeholder-ready
-                    dashboards—so bottlenecks, SLA risks, and inventory issues are visible early and actions are trackable.
+                    I build the data layer that operations teams run on. That means ingesting from marketplaces, OMS/WMS
+                    systems, and internal tools; modeling and validating it in SQL; orchestrating batch pipelines on Airflow
+                    and AWS; and delivering trustworthy datasets to warehouses, Sheets, and BI dashboards. Every pipeline ships
+                    with quality checks, retries, alerting, and lineage, so bad data is caught before it reaches a decision.
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2">
-                    <Badge>KPI frameworks</Badge>
-                    <Badge>Automation-first reporting</Badge>
-                    <Badge>BI dashboards</Badge>
-                    <Badge>Ops × Tech collaboration</Badge>
+                    <Badge>Batch ETL</Badge>
+                    <Badge>Data quality by default</Badge>
+                    <Badge>Cloud-native (AWS / GCP)</Badge>
+                    <Badge>Idempotent, observable pipelines</Badge>
                   </div>
                 </div>
 
@@ -557,16 +566,16 @@ export default function RohithPortfolio() {
                   <div className="text-xs font-semibold text-zinc-900 dark:text-zinc-50">Core Areas</div>
                   <ul className="mt-3 space-y-2 text-sm text-zinc-700 dark:text-zinc-200">
                     <li className="flex items-center gap-2">
-                      <Warehouse className="h-4 w-4" /> Warehouse KPI systems
+                      <Workflow className="h-4 w-4" /> Batch ETL & orchestration
                     </li>
                     <li className="flex items-center gap-2">
-                      <TrendingUp className="h-4 w-4" /> Forecasting & replenishment
+                      <Cloud className="h-4 w-4" /> AWS & GCP data infrastructure
                     </li>
                     <li className="flex items-center gap-2">
-                      <LayoutDashboard className="h-4 w-4" /> Executive dashboards
+                      <ShieldCheck className="h-4 w-4" /> Data quality & lineage
                     </li>
                     <li className="flex items-center gap-2">
-                      <FileSpreadsheet className="h-4 w-4" /> Sheets/App Script tooling
+                      <GitBranch className="h-4 w-4" /> Data modeling in SQL
                     </li>
                   </ul>
                 </div>
@@ -574,25 +583,18 @@ export default function RohithPortfolio() {
             </Card>
           </Section>
 
-          <Section id="skills" title="Skills" icon={Wrench} subtitle="Technical stack + domain strengths">
-            <div className="grid gap-3 md:grid-cols-2">
-              <Card>
-                <div className="text-sm font-semibold">Technical</div>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {data.skills.technical.map((s) => (
-                    <Badge key={s}>{s}</Badge>
-                  ))}
-                </div>
-              </Card>
-
-              <Card>
-                <div className="text-sm font-semibold">Domain</div>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {data.skills.domain.map((s) => (
-                    <Badge key={s}>{s}</Badge>
-                  ))}
-                </div>
-              </Card>
+          <Section id="skills" title="Skills" icon={Wrench} subtitle="Data engineering stack, from ingestion to consumption">
+            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+              {data.skills.map((g) => (
+                <Card key={g.group}>
+                  <div className="text-sm font-semibold">{g.group}</div>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {g.items.map((s) => (
+                      <Badge key={s}>{s}</Badge>
+                    ))}
+                  </div>
+                </Card>
+              ))}
             </div>
           </Section>
 
@@ -606,7 +608,7 @@ export default function RohithPortfolio() {
             </Card>
           </Section>
 
-          <Section id="experience" title="Experience" icon={Warehouse} subtitle="Roles and outcomes">
+          <Section id="experience" title="Experience" icon={Warehouse} subtitle="Data work across retail, eCommerce, marketplace & supply chain">
             <Card>
               <div className="space-y-8">
                 {data.experience.map((e, idx) => (
@@ -616,25 +618,18 @@ export default function RohithPortfolio() {
             </Card>
           </Section>
 
-          <Section
-            id="accomplishments"
-            title="Career Accomplishments"
-            icon={TrendingUp}
-            subtitle="High-impact initiatives and outcomes"
-          >
-            <Card>
-              <ul className="space-y-3 text-sm text-zinc-700 dark:text-zinc-200">
-                {data.accomplishments.map((a, i) => (
-                  <li key={i} className="flex gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-600" />
-                    <span>{a}</span>
-                  </li>
-                ))}
-              </ul>
-            </Card>
+          <Section id="impact" title="Impact" icon={TrendingUp} subtitle="Measured outcomes from pipelines in production">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+              {data.impact.map((m) => (
+                <Card key={m.label}>
+                  <div className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">{m.metric}</div>
+                  <div className="mt-2 text-sm text-zinc-700 dark:text-zinc-200">{m.label}</div>
+                </Card>
+              ))}
+            </div>
           </Section>
 
-          <Section id="projects" title="Projects" icon={BarChart3} subtitle="Cards with icons + quick links">
+          <Section id="projects" title="Projects" icon={BarChart3} subtitle="Pipelines and data platforms I've built">
             <div className="grid gap-3">
               <Card>
                 <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
@@ -647,7 +642,7 @@ export default function RohithPortfolio() {
                     <input
                       value={query}
                       onChange={(e) => setQuery(e.target.value)}
-                      placeholder="e.g., Tableau, Python, regression"
+                      placeholder="e.g., Airflow, AWS, DuckDB"
                       className="w-full rounded-2xl border border-white/40 bg-white/70 py-2 pl-9 pr-3 text-sm text-zinc-900 outline-none backdrop-blur focus:ring-2 focus:ring-zinc-300 dark:border-white/10 dark:bg-white/5 dark:text-zinc-100 dark:focus:ring-zinc-700"
                     />
                   </div>
@@ -753,9 +748,9 @@ export default function RohithPortfolio() {
             <div className="mx-auto max-w-6xl rounded-3xl border border-white/40 bg-white/60 px-6 py-5 text-sm text-zinc-700 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-zinc-200">
               <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
                 <div className="text-left">
-                  <div className="font-semibold">Let’s build something measurable.</div>
+                  <div className="font-semibold">Let&apos;s build reliable data.</div>
                   <div className="mt-1 text-xs text-zinc-600 dark:text-zinc-300">
-                    Email me for Analytics / BI / Ops Analytics roles.
+                    Open to Data Engineering and Analytics Engineering roles.
                   </div>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
